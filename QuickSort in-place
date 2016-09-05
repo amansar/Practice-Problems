@@ -1,0 +1,54 @@
+Problem link:https://www.hackerrank.com/challenges/quicksort3
+def swap(arr, first, second):
+    temp = arr[first]
+    arr[first] = arr[second]
+    arr[second] = temp
+    return arr
+
+def partition(arr, lo, hi):
+    pivot = arr[hi]
+    i = lo
+    for j in range(lo, hi):
+        if arr[j] <= pivot:
+            arr = swap(arr, i, j)
+            i += 1
+    arr = swap(arr,i, hi)
+    newArrFormat = ""
+    for k in arr:
+        newArrFormat = newArrFormat + str(k) + " "
+    print(newArrFormat)
+    return i
+       
+    
+        
+
+def quickSort(arr, lo, hi):
+    if(lo < hi):
+        pivot = partition(arr, lo, hi)
+        quickSort(arr, lo, pivot - 1)
+        quickSort(arr, pivot + 1, hi)
+    
+def checkSorted(arr):
+    if(len(arr) == 1):
+        return True
+    else:
+        minimum = arr[0]
+        lengthArr = len(arr)
+        for i in range(lengthArr):
+            if(arr[i] >= minimum):
+                minimum = arr[i]
+            elif(arr[i] < minimum):
+                return False
+        return True
+def main():
+    arraySize = int(input())
+    arr = list(map(int, input().split(None, arraySize)[:arraySize]))
+    alreadySorted = checkSorted(arr)
+    if(alreadySorted == False):
+        end = len(arr) - 1
+        start = 0
+        arr = quickSort(arr, start, end)
+    
+    
+    
+main()
