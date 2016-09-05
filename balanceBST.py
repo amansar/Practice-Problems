@@ -9,11 +9,10 @@ def balance(arr, middle, left, right):
     left = middle - 1
     right = middle + 1
     realRoot = arr[middle]
-    leftN = balance(arr[0:left], middle, left, right)
     newRoot = BSTNode(realRoot)
+    leftN = balance(arr[0:left], middle, left, right)
     newRoot.left = leftN
     rightN = balance(arr[right:len(arr)], middle, left, right)
-    newRoot = BSTNode(realRoot)
     newRoot.right = rightN
     
 def main():
